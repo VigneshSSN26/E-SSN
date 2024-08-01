@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Notification</title>
+    <link rel="stylesheet" href="/sendnotification.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Send Notification</h1>
+        <form id="send-notification-form">
+            <label for="notification-type">Send To:</label>
+            <select id="notification-type" name="notification-type">
+                <option value="all">All Users</option>
+                <option value="private">Specific User</option>
+            </select>
+
+            <div id="all-users-notification" class="notification-section">
+                <label for="message-all">Message:</label>
+                <textarea id="message-all" name="message-all" rows="4" required></textarea>
+            </div>
+
+            <div id="private-user-notification" class="notification-section" style="display: none;">
+                <label for="user-name">Name:</label>
+                <input type="text" id="user-name" name="user-name">
+
+                <label for="user-phone">Phone Number:</label>
+                <input type="text" id="user-phone" name="user-phone">
+
+                <label for="message-private">Message:</label>
+                <textarea id="message-private" name="message-private" rows="4"></textarea>
+            </div>
+
+            <button type="submit">Send Notification</button>
+        </form>
+    </div>
+    <script src="/sendnotification.js"></script>
+</body>
+</html>

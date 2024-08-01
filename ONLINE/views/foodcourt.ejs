@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+            background-image: url('/uploads/restaurant-1948732_1920.webp');
+            background-size: cover; /* Ensure the background image covers the entire page */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            height: 100%; /* Ensure the body takes the full height */
+        }
+        
+        /* Navbar Section */
+        .navbar {
+            width: 100%;
+            background-color: skyblue;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .blinking-text {
+            font-size: 24px;
+            font-weight: bold;
+            animation: blinkingText 1.5s infinite;
+        }
+
+        @keyframes blinkingText {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: dodgerblue;
+        }
+        
+        /* Main Content: Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 70px; /* Space below the navbar */
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        
+        /* Card Section */
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 30%;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            transform: translateY(40px) translateX(140px); /* Adjust the position */
+        }
+        
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .card h3 {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+        }
+        
+        .card {
+            display: none;
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+        }
+        
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .card.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <h2 class="blinking-text">The menu will open based on the current time</h2>
+    </nav>
+
+    <!-- Main Content: Container -->
+    <div class="container">
+        <a href="/food/<%= shop_id %>?param1=<%= id %>&type=breakfast" id="breakfast-card" class="card">
+            <img src="/uploads/breakfast.jpg" alt="Breakfast Logo">
+            <h3>BREAKFAST</h3>
+        </a>
+        <a href="/food/<%= shop_id %>?param1=<%= id %>&type=lunch" id="lunch-card" class="card">
+            <img src="/uploads/lunch.jpg" alt="Lunch Logo">
+            <h3>LUNCH</h3>
+        </a>
+        <a href="/food/<%= shop_id %>?param1=<%= id %>&type=dinner" id="dinner-card" class="card">
+            <img src="/uploads/print-206289807.webp" alt="Dinner Logo">
+            <h3>DINNER</h3>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const hours = now.getHours();
+        
+            if (hours >= 6 && hours < 11) {
+                document.getElementById('breakfast-card').classList.add('active');
+            } else if (hours >= 11 && hours < 16) {
+                document.getElementById('lunch-card').classList.add('active');
+            } else if (hours >= 16 && hours < 23) {
+                document.getElementById('dinner-card').classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+

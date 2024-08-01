@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Admin Dashboard</h2>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="buttons">
+            <button onclick="location.href='/changecost/<%= admin_id %>'">Change Cost</button>
+            <button onclick="location.href='/addmenu/<%= admin_id %>'">Add Menu</button>
+            <button onclick="location.href='/orders/<%= admin_id %>'">View Orders</button>
+            <button onclick="location.href='/sendnotification/<%= admin_id %>'">Send Notification</button>
+        </div>
+    </div>
+    <script ></script>
+</body>
+</html>
+

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"], input[type="file"], button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #otpSection, #additionalFields {
+            margin-top: 20px;
+        }
+
+        #timer {
+            font-weight: bold;
+            color: #d9534f;
+        }
+
+        .alert {
+            color: #d9534f;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Owner Signup</h1>
+        <form id="signupForm">
+            <input type="text" id="signup-name" name="name" placeholder="Name" required>
+            <input type="text" id="signup-number" name="phoneNumber" placeholder="Phone Number" required>
+            <button type="submit">Send OTP</button>
+        </form>
+
+        <div id="otpSection" style="display:none;">
+            <form id="otpForm">
+                <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+                <button type="submit">Verify OTP</button>
+            </form>
+            <div>OTP expires in: <span id="timer">01:00</span></div>
+        </div>
+
+        <div id="additionalFields" style="display:none;">
+            <form id="additionalForm" enctype="multipart/form-data">
+                <input type="text" id="store-name" name="storeName" placeholder="Store Name" required>
+                <input type="file" name="photo" required>
+                <button type="submit">Submit Details</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const signupForm = document.getElementById('signupForm');
+            const otpForm = document.getElementById('otpForm');
+            const additionalForm = document.getElementById('additionalForm');
+            const otpSection = document.getElementById('otpSection');
+            const additionalFields = document.getElementById('additionalFields');
+            const timerElement = document.getElementById('timer');
+        
+            let timerInterval;
+            let otpExpiryTime;
+        
+            signupForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+        
+                const phoneNumber = document.getElementById('signup-number').value.trim();
+                const name = document.getElementById('signup-name').value.trim();
+        
+                if (!phoneNumber || phoneNumber.length !== 10 || isNaN(phoneNumber)) {
+                    alert('Please enter a valid 10-digit phone number.');
+                    return;
+                }
+        
+                if (!name) {
+                    alert('Please enter your name.');
+                    return;
+                }
+        
+                fetch('/owner-request-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phoneNumber, name })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data === 'User already exists') {
+                        alert('User already exists');
+                        otpSection.style.display = 'none';
+                    } else {
+                        alert(data);
+                        otpSection.style.display = 'block';
+                        startTimer();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        
+            otpForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+        
+                const phoneNumber = document.getElementById('signup-number').value.trim();
+                const otp = document.getElementById('otp').value.trim();
+        
+                if (!otp || otp.length !== 6 || isNaN(otp)) {
+                    alert('Please enter a valid OTP.');
+                    return;
+                }
+        
+                fetch('/owner-verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phoneNumber, otp })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        otpSection.style.display = 'none';
+                        additionalFields.style.display = 'block';
+                        alert('OTP verified successfully. Please fill out the remaining fields.');
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        
+            additionalForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+        
+                const phoneNumber = document.getElementById('signup-number').value.trim();
+                const name = document.getElementById('signup-name').value.trim();
+                const formData = new FormData(additionalForm);
+                formData.append('phoneNumber', phoneNumber);
+                formData.append('name', name);
+        
+                fetch('/submit-owner-details', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        window.location.href = '/login';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        
+            function startTimer() {
+                const expiryTime = Date.now() + 60000;
+                otpExpiryTime = expiryTime;
+                timerInterval = setInterval(() => {
+                    const remainingTime = Math.max(0, otpExpiryTime - Date.now());
+                    const minutes = Math.floor(remainingTime / 60000);
+                    const seconds = Math.floor((remainingTime % 60000) / 1000);
+                    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        timerElement.textContent = '00:00';
+                        alert('OTP expired');
+                        otpSection.style.display = 'none';
+                    }
+                }, 1000);
+            }
+        });
+        
+    </script>
+</body>
+</html>
+
+
+

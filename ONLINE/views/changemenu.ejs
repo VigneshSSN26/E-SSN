@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Menu Cost</title>
+    <link rel="stylesheet" href="/changemenu.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Admin Dashboard</h2>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Change Menu Cost</h1>
+        <form id="change-cost-form">
+            <label for="menu-name">Menu Name:</label>
+            <input type="text" id="menu-name" name="menu-name" required>
+
+            <label for="new-cost">New Cost:</label>
+            <input type="number" id="new-cost" name="new-cost" step="0.01" required>
+            <input type="hidden" id="admin_id" name="admin_id" value="<%= admin_id %>">
+
+            <button type="submit">Update Cost</button>
+        </form>
+    </div>
+    <script src="/changemenu.js"></script>
+</body>
+</html>
+

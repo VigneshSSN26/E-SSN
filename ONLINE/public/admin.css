@@ -1,0 +1,60 @@
+/* admin.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #27cdeb; /* Fallback color */
+    background: url('/uploads/360_F_348552050_uSbrANL65DNj21FbaCeswpM33mat1Wll.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.container {
+    max-width: 400px;
+    margin: 150px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(5px); /* For WebKit-based browsers */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+button {
+    width: 200px; /* Set a fixed width for all buttons */
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

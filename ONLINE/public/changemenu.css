@@ -1,0 +1,79 @@
+/* changemenu.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fallback color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('/uploads/Screenshot 2024-07-31 000313.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5); /* Optional: Add a background to header for better text visibility */
+}
+
+header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    margin-top: 60px; /* Adjust margin-top to make space for fixed header */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For WebKit-based browsers */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+

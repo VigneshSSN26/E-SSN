@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Card - Dinner Menu</title>
+    <link rel="stylesheet" href="dinner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('/uploads/OIP (1).jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        /* Header Section */
+        .header {
+            width: 100%;
+            background-color: skyblue;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: skyblue;
+            color: white;
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 50px; /* Adjust based on header height */
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: dodgerblue;
+        }
+
+        /* Main Content: Container */
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background: skyblue;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 90px; /* Adjusted for navbar height */
+        }
+
+        .menu-card {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .menu-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .menu-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .menu-item span {
+            margin: 0 10px;
+            flex: 1;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-controls button {
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .quantity-controls .quantity {
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .order-summary {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .order-summary h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        #order-table th, #order-table td {
+            border: 1px solid #1e83c7;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .total {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #place-order {
+            background: #333;
+            color: rgb(19, 139, 209);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Menu Card</h1>
+    </header>
+
+    <!-- Main Content: Container -->
+    <div class="container">
+        <div class="menu-card">
+            <h2>MenuCard</h2>
+            <input type="hidden" id="shop-id" value="<%= admin_id %>"> <!-- Example shop ID -->
+            <input type="hidden" id="user-id" value="<%= id %>"> <!-- Example user ID -->
+            <ul>
+                <% menuItems.forEach(function(menuItem) { %>
+                    <li class="menu-item" data-dish="<%= menuItem.name %>" data-price="<%= menuItem.price %>">
+                      <img src="\<%= menuItem.photo %>" alt="<%= menuItem.name %>">
+                      <span><%= menuItem.name %></span>
+                      <span>₹<%= menuItem.price %></span>
+                      <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                      </div>
+                    </li>
+                  <% }); %>
+            </ul>
+        </div>
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <table id="order-table">
+                <thead>
+                    <tr>
+                        <th>Dish</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ordered items will be added here -->
+                </tbody>
+            </table>
+            <div class="total">
+                <span>Total: ₹</span><span id="total-amount">0</span>
+            </div>
+            <button id="place-order">Place Order</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const orderTableBody = document.querySelector('#order-table tbody');
+            const totalAmountSpan = document.getElementById('total-amount');
+            let totalAmount = 0;
+            
+            menuItems.forEach(item => {
+                const plusButton = item.querySelector('.plus');
+                const minusButton = item.querySelector('.minus');
+                const quantitySpan = item.querySelector('.quantity');
+                const dish = item.dataset.dish;
+                const price = parseFloat(item.dataset.price);
+            
+                plusButton.addEventListener('click', () => {
+                    const currentQuantity = parseInt(quantitySpan.textContent);
+                    const newQuantity = currentQuantity + 1;
+                    quantitySpan.textContent = newQuantity;
+                    updateOrderTable(dish, price, newQuantity);
+                });
+            
+                minusButton.addEventListener('click', () => {
+                    const currentQuantity = parseInt(quantitySpan.textContent);
+                    if (currentQuantity > 0) {
+                        const newQuantity = currentQuantity - 1;
+                        quantitySpan.textContent = newQuantity;
+                        updateOrderTable(dish, price, newQuantity);
+                    }
+                });
+            });
+            
+            function updateOrderTable(dish, price, quantity) {
+                let row = orderTableBody.querySelector(`[data-dish="${dish}"]`);
+                if (quantity === 0) {
+                    if (row) row.remove();
+                } else {
+                    if (!row) {
+                        row = document.createElement('tr');
+                        row.dataset.dish = dish;
+                        row.innerHTML = `
+                            <td>${dish}</td>
+                            <td class="quantity">${quantity}</td>
+                            <td class="price">${price * quantity}</td>
+                        `;
+                        orderTableBody.appendChild(row);
+                    } else {
+                        row.querySelector('.quantity').textContent = quantity;
+                        row.querySelector('.price').textContent = price * quantity;
+                    }
+                }
+                updateTotalAmount();
+            }
+            
+            function updateTotalAmount() {
+                totalAmount = Array.from(orderTableBody.querySelectorAll('.price'))
+                    .reduce((sum, priceCell) => sum + parseFloat(priceCell.textContent), 0);
+                totalAmountSpan.textContent = totalAmount.toFixed(2);
+            }
+            
+            document.getElementById('place-order').addEventListener('click', async () => {
+                const shopId = document.getElementById('shop-id').value; // Assume shop-id is stored in a hidden input
+                const userId = document.getElementById('user-id').value; // Assume user-id is stored in a hidden input
+              
+                const orderData = Array.from(orderTableBody.querySelectorAll('tr')).map(row => ({
+                    dishName: row.dataset.dish, // Use `dishName` instead of `productName`
+                    quantity: parseInt(row.querySelector('.quantity').textContent),
+                    price: parseFloat(row.querySelector('.price').textContent) / parseInt(row.querySelector('.quantity').textContent)
+                }));
+              
+                const totalCost = orderData.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              
+                try {
+                    const response = await fetch('/api/orders', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ shopId, userId, orders: orderData, totalCost })
+                    });
+              
+                    if (response.ok) {
+                        alert('Order placed successfully!');
+                        orderTableBody.innerHTML = ''; // Clear the order summary
+                        totalAmountSpan.textContent = '0'; // Reset total amount
+                    } else {
+                        const errorData = await response.json(); // Get detailed error message
+                        alert(`Error placing order: ${errorData.message || 'Unknown error'}`);
+                    }
+                } catch (error) {
+                    alert(`Error placing order: ${error.message}`);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+

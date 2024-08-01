@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Page</title>
+    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Hidden input field to store user ID -->
+    <input type="hidden" id="user-id" value=<%= id %>>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1 class="blinking-title">ORDER NOW !!!</h1>
+        </div>
+        <div class="navbar-right">
+            <button class="icon-button" id="notification-button" onclick="location.href='/notification/<%= id %>'" >
+                <i class="fas fa-bell"></i>
+                <span class="badge" id="notification-badge">0</span>
+            </button>
+            <button class="icon-button">
+                <i class="fas fa-shopping-cart"></i>
+            </button>
+        </div>
+    </nav>
+    <div class="container">
+        <% if (shop && shop.length) { %>
+            <% shop.forEach(function(shop) { %>
+              <a href="shop/<%= shop._id %>?param1=<%= id %>" class="card">
+                <img src="<%= shop.photo %>" alt="<%= shop.storeName %> Logo">
+                <h3><%= shop.storeName %></h3>
+              </a>
+            <% }); %>
+          <% } else { %>
+            <p>No shops available.</p>
+          <% } %>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve the user ID from the hidden input field
+        const userId = document.getElementById('user-id').value;
+        console.log('User ID:', userId); // Debugging statement to check user ID
+
+        // Check if userId is not empty or undefined
+        if (userId) {
+            const notificationButton = document.getElementById('notification-button');
+            const notificationBadge = document.getElementById('notification-badge');
+
+            // Fetch unread notifications count
+            fetch(`/api/notifications/count/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const unreadCount = data.unreadCount;
+                    console.log('Unread Count:', unreadCount); // Debugging statement to check unread count
+
+                    if (unreadCount > 0) {
+                        notificationBadge.textContent = unreadCount;
+                        notificationButton.classList.add('active');
+                    } else {
+                        notificationBadge.textContent = '';
+                        notificationButton.classList.remove('active');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching notifications count:', error);
+                });
+        } else {
+            console.error('User ID is not set or is empty.');
+        }
+    });
+</script>
+</html>
+

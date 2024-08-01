@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Menu Item</title>
+    <link rel="stylesheet" href="/addmenu.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Admin Dashboard</h2>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Add Menu Item</h1>
+        <form id="add-menu-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" required><br><br>
+
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" required><br><br>
+
+            <label for="menu-photo">Photo:</label>
+            <input type="file" id="menu-photo" name="menu-photo" required><br><br>
+
+            <input type="hidden" id="admin_id" name="admin_id" value="<%= admin_id %>">
+
+            <button type="submit">Add Menu Item</button>
+        </form>
+    </div>
+    <script src="/addmenu.js"></script>
+</body>
+</html>
+
+

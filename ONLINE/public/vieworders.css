@@ -1,0 +1,110 @@
+/* vieworders.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed from center to flex-start */
+    height: 100vh;
+    background: url('/uploads/design-professional-and-modern-restaurant-menu.png') no-repeat center center fixed;
+    background-size: cover;
+    display: fixed;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    top: 0;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.buttons, .section {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    display: block;
+    width: calc(100% - 40px);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#orders-list {
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+#orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#orders-table th, #orders-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#orders-table th {
+    background-color: #f4f4f4;
+}
+
+.select-status {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Card</title>
+    <link rel="stylesheet" href="/breakfast.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container" data-userid="<%= id %>">
+        <div class="menu-card">
+            <h2>Breakfast Menu</h2>
+            <ul>
+                <li class="menu-item" data-dish="Idly" data-price="30">
+                    <img src="/uploads/idly.jpg" alt="Idly">
+                    <span>Idly</span>
+                    <span>₹30</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Dosa" data-price="40">
+                    <img src="/uploads/dosa.jpg" alt="Dosa">
+                    <span>Dosa</span>
+                    <span>₹40</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Pongal" data-price="35">
+                    <img src="/uploads/pongal.jpg" alt="Pongal">
+                    <span>Pongal</span>
+                    <span>₹35</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Poori" data-price="45">
+                    <img src="/uploads/poori.jpg" alt="Poori">
+                    <span>Poori</span>
+                    <span>₹45</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Vada" data-price="25">
+                    <img src="/uploads/vada.jpg" alt="Vada">
+                    <span>Vada</span>
+                    <span>₹25</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Mutta Dosa" data-price="50">
+                    <img src="/uploads/mutadosa.jpg" alt="Mutta Dosa">
+                    <span>Mutta Dosa</span>
+                    <span>₹50</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Roast" data-price="60">
+                    <img src="/uploads/roast.jpg" alt="Roast">
+                    <span>Roast</span>
+                    <span>₹60</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Coffee" data-price="20">
+                    <img src="/uploads/coffee.jpg" alt="Coffee">
+                    <span>Coffee</span>
+                    <span>₹20</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-dish="Tea" data-price="15">
+                    <img src="/uploads/tea.jpg" alt="Tea">
+                    <span>Tea</span>
+                    <span>₹15</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <table id="order-table">
+                <thead>
+                    <tr>
+                        <th>Dish</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ordered items will be added here -->
+                </tbody>
+            </table>
+            <div class="total">
+                <span>Total: ₹</span><span id="total-amount">0</span>
+            </div>
+            <button id="place-order">Place Order</button>
+        </div>
+    </div>
+
+    <script src="/breakfast.js"></script>
+</body>
+</html>

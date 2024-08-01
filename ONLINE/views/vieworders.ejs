@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders</title>
+    <link rel="stylesheet" href="/vieworders.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Admin Dashboard</h2>
+        </nav>
+    </header>
+    <input type="hidden" id="shop-id" value="<%= admin_id %>">
+    <div class="container">
+        <h1>View Orders</h1>
+        <div id="orders-list">
+            <table id="orders-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Phone Number</th>
+                        <th>Name</th>
+                        <th>Items</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Order rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/vieworders.js"></script>
+</body>
+</html>
+

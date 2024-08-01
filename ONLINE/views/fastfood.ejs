@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food Menu</title>
+    <link rel="stylesheet" href="fastfood.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="menu-card">
+            <h2>Fast Food Menu</h2>
+            <ul>
+                <li class="menu-item" data-item="Chicken Rice" data-price="80">
+                    <img src="G:\foodiee\src\images\chickenrice.jpg" alt="Chicken Rice">
+                    <span>Chicken Rice</span>
+                    <span>₹80</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Chicken Noodles" data-price="90">
+                    <img src="G:\foodiee\src\images\chickennoodles.jpg" alt="Chicken Noodles">
+                    <span>Chicken Noodles</span>
+                    <span>₹90</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Veg Magiee" data-price="50">
+                    <img src="G:\foodiee\src\images\vegmagiee.jpg" alt="Veg Magiee">
+                    <span>Veg Magiee</span>
+                    <span>₹50</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Chicken Magiee" data-price="70">
+                    <img src="G:\foodiee\src\images\chickenmagiee.jpg" alt="Chicken Magiee">
+                    <span>Chicken Magiee</span>
+                    <span>₹70</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Egg Magiee" data-price="60">
+                    <img src="G:\foodiee\src\images\eggmagiee.jpg" alt="Egg Magiee">
+                    <span>Egg Magiee</span>
+                    <span>₹60</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Paratha" data-price="30">
+                    <img src="G:\foodiee\src\images\paratha.jpg" alt="Paratha">
+                    <span>Paratha</span>
+                    <span>₹30</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Kothu Paratha" data-price="40">
+                    <img src="G:\foodiee\src\images\chickenkothuparatha.jpg" alt="Kothu Paratha">
+                    <span>Kothu Paratha</span>
+                    <span>₹40</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Paniyaram" data-price="50">
+                    <img src="G:\foodiee\src\images\panniyaram.jpg" alt="Paniyaram">
+                    <span>Paniyaram</span>
+                    <span>₹50</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+                <li class="menu-item" data-item="Mutta Paniyaram" data-price="60">
+                    <img src="G:\foodiee\src\images\panniyaram.jpg" alt="Mutta Paniyaram">
+                    <span>Mutta Paniyaram</span>
+                    <span>₹60</span>
+                    <div class="quantity-controls">
+                        <button class="minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="plus">+</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <table id="order-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ordered items will be added here -->
+                </tbody>
+            </table>
+            <div class="total">
+                <span>Total: ₹</span><span id="total-amount">0</span>
+            </div>
+            <button id="place-order">Place Order</button>
+        </div>
+    </div>
+
+    <script src="fastfood.js"></script>
+</body>
+</html>
